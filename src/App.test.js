@@ -12,6 +12,10 @@ test('1 + 1 = 2', () => {
   expect(1 + 1).toBe(2);
 });
 
+it('5 + 5 = 10', () => {
+  expect(5 + 5).toBe(10);
+});
+
 test('object assignment', () => {
   const data = {one: 1};
   data['two'] = 2;

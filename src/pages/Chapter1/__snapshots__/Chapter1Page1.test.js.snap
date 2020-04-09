@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` Chapter1Page1 renders correctly 1`] = `
+Array [
+  <h1
+    className="display-4"
+  >
+    Chapter 1 - Page 1
+  </h1>,
+  <p
+    className="lead"
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam quam nulla porttitor massa. Sit amet aliquam id diam maecenas ultricies mi eget. In nisl nisi scelerisque eu ultrices vitae auctor eu augue. Neque sodales ut etiam sit amet nisl.
+  </p>,
+  <br />,
+  <pre>
+    <code>
+      
+let i = 1
+let a = (1, 2)
+let xs = [1; 2; 3]
+    
+    </code>
+  </pre>,
+]
+`;
