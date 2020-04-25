@@ -1,4 +1,5 @@
 import React from 'react';
+import Foo from './Foo';
 
 const Chapter1Page1 = () => {
   const code = `
@@ -25,6 +26,10 @@ let xs = [1; 2; 3]
       </p>
       <br/>
       <pre><code>{code}</code></pre>
+      <p class="text-monospace">
+        Foo component
+      </p>
+      <Foo/>
     </>
   );
 }
