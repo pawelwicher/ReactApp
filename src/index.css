@@ -2,3 +2,17 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.app-logo {
+  height: 400px;
+  animation: app-logo-spin infinite 20s linear;
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

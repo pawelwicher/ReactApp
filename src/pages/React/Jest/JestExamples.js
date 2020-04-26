@@ -1,11 +1,27 @@
 import React from 'react';
+
+export default function JestExamples() {
+
+  const code = `
+import React from 'react';
+import renderer from 'react-test-renderer';
 import { render } from '@testing-library/react';
 import App from './App';
+import Home from './Home';
 
+// jest-dom
 test('renders learn react link', () => {
   const { getByText } = render(<App />);
   const linkElement = getByText(/Home/i, { selector: 'a' });
   expect(linkElement).toBeInTheDocument();
+});
+
+
+it('Home renders correctly', () => {
+const tree = renderer
+  .create(<Home />)
+  .toJSON();
+expect(tree).toMatchSnapshot();
 });
 
 test('1 + 1 = 2', () => {
@@ -65,12 +81,12 @@ test.each([
   expect(a + b).toBe(expected);
 });
 
-test.each`
+test.each\`
   a    | b    | expected
-  ${1} | ${1} | ${2}
-  ${1} | ${2} | ${3}
-  ${2} | ${1} | ${3}
-`('returns $expected when $a is added $b', ({a, b, expected}) => {
+  \${1} | \${1} | \${2}
+  \${1} | \${2} | \${3}
+  \${2} | \${1} | \${3}
+\`('returns $expected when $a is added $b', ({a, b, expected}) => {
   expect(a + b).toBe(expected);
 });
 
@@ -122,3 +138,15 @@ test('the shopping list has beer on it', () => {
   expect(shoppingList).toContain('beer');
   expect(new Set(shoppingList)).toContain('beer');
 });
+`;
+
+  return (
+    <>
+      <h1 className="display-4">Jest testing</h1>
+      <br/>
+      <pre className="text-monospace">
+        <code>{code}</code>
+      </pre>
+    </>
+  );
+}

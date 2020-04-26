@@ -1,10 +1,10 @@
 import React from 'react';
-import Chapter1Page1 from './Chapter1Page1';
+import Home from './Home';
 import renderer from 'react-test-renderer';
 
-it(' Chapter1Page1 renders correctly', () => {
+it('Home renders correctly', () => {
   const tree = renderer
-    .create(<Chapter1Page1 />)
+    .create(<Home />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

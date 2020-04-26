@@ -2,12 +2,10 @@ import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import Home from './pages/Home';
-import Chapter1Page1 from './pages/Chapter1/Chapter1Page1';
-import Chapter1Page2 from './pages/Chapter1/Chapter1Page2';
-import Chapter1Page3 from './pages/Chapter1/Chapter1Page3';
-import Chapter2Page1 from './pages/Chapter2/Chapter2Page1';
-import Chapter2Page2 from './pages/Chapter2/Chapter2Page2';
-import Chapter2Page3 from './pages/Chapter2/Chapter2Page3';
+import FunctionComponent from './pages/React/FunctionComponent/FunctionComponent';
+import JestExamples from './pages/React/Jest/JestExamples';
+import RxJsCreationOperators from './pages/RxJS/RxJsCreationOperators';
+import RamdaComposition from './pages/Ramda/RamdaComposition';
 
 const App = () =>
   <HashRouter>
@@ -16,27 +14,25 @@ const App = () =>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="#/">Home</Nav.Link>
-          <NavDropdown title="Chapter 1" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#chapter1/page1">Page 1</NavDropdown.Item>
-            <NavDropdown.Item href="#chapter1/page2">Page 2</NavDropdown.Item>
-            <NavDropdown.Item href="#chapter1/page3">Page 3</NavDropdown.Item>
+          <NavDropdown title="React" id="basic-nav-dropdown">
+            <NavDropdown.Item href="#react/function-component">Function component</NavDropdown.Item>
+            <NavDropdown.Item href="#react/jest-examples">Jest testing</NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Chapter 2" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#chapter2/page1">Page 1</NavDropdown.Item>
-            <NavDropdown.Item href="#chapter2/page2">Page 2</NavDropdown.Item>
-            <NavDropdown.Item href="#chapter2/page3">Page 3</NavDropdown.Item>
+          <NavDropdown title="RxJS" id="basic-nav-dropdown">
+            <NavDropdown.Item href="#rxjs/creation-operators">RxJs creation operators</NavDropdown.Item>
+          </NavDropdown>
+          <NavDropdown title="Ramda" id="basic-nav-dropdown">
+            <NavDropdown.Item href="#ramda/composition">Ramda function composition</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
     <div className="container">
       <Route exact path="/" component={Home}/>
-      <Route path="/chapter1/page1" component={Chapter1Page1}/>
-      <Route path="/chapter1/page2" component={Chapter1Page2}/>
-      <Route path="/chapter1/page3" component={Chapter1Page3}/>
-      <Route path="/chapter2/page1" component={Chapter2Page1}/>
-      <Route path="/chapter2/page2" component={Chapter2Page2}/>
-      <Route path="/chapter2/page3" component={Chapter2Page3}/>
+      <Route path="/react/function-component" component={FunctionComponent}/>
+      <Route path="/react/jest-examples" component={JestExamples}/>
+      <Route path="/rxjs/creation-operators" component={RxJsCreationOperators}/>
+      <Route path="/ramda/composition" component={RamdaComposition}/>
     </div>
   </HashRouter>
 
