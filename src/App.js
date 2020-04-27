@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import FunctionComponent from './pages/React/FunctionComponent/FunctionComponent';
 import JestExamples from './pages/React/Jest/JestExamples';
 import RxJsCreationOperators from './pages/RxJS/RxJsCreationOperators';
+import RxJsTransformationOperators from './pages/RxJS/RxJsTransformationOperators';
 import RamdaComposition from './pages/Ramda/RamdaComposition';
 
 const App = () =>
@@ -19,7 +20,8 @@ const App = () =>
             <NavDropdown.Item href="#react/jest-examples">Jest testing</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="RxJS" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#rxjs/creation-operators">RxJs creation operators</NavDropdown.Item>
+            <NavDropdown.Item href="#rxjs/creation-operators">RxJS creation operators</NavDropdown.Item>
+            <NavDropdown.Item href="#rxjs/transformation-operators">RxJS transformation operators</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="Ramda" id="basic-nav-dropdown">
             <NavDropdown.Item href="#ramda/composition">Ramda function composition</NavDropdown.Item>
@@ -32,6 +34,7 @@ const App = () =>
       <Route path="/react/function-component" component={FunctionComponent}/>
       <Route path="/react/jest-examples" component={JestExamples}/>
       <Route path="/rxjs/creation-operators" component={RxJsCreationOperators}/>
+      <Route path="/rxjs/transformation-operators" component={RxJsTransformationOperators}/>
       <Route path="/ramda/composition" component={RamdaComposition}/>
     </div>
   </HashRouter>

@@ -5,21 +5,19 @@ export default function RxJsCreationOperators() {
 
   useEffect(() => {
     const source = interval(1000);
-    const subscription = source.subscribe(x => console.log(x));
+    const subscription = source.subscribe(console.log);
 
-    return () => {
-      subscription.unsubscribe();
-    };
-}, []);
+    return () => subscription.unsubscribe();
+  }, []);
 
   const code = `
 const source = interval(1000);
-const subscription = source.subscribe(x => console.log(x));
+const subscription = source.subscribe(console.log);
 `;
 
   return (
     <>
-      <h1 className="display-4">RxJs creation operators</h1>
+      <h1 className="display-4">RxJS creation operators</h1>
       <br/>
       <pre className="text-monospace">
         <code>{code}</code>
