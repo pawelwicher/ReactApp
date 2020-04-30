@@ -1,7 +1,7 @@
 import React from 'react';
 import * as R from 'ramda';
 
-export default function JestExamples() {
+export default function RamdaComposition() {
 
   const addOne = x => x + 1;
   const double = x => x * 2;

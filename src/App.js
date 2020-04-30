@@ -7,6 +7,7 @@ import JestExamples from './pages/React/Jest/JestExamples';
 import RxJsCreationOperators from './pages/RxJS/RxJsCreationOperators';
 import RxJsTransformationOperators from './pages/RxJS/RxJsTransformationOperators';
 import RamdaComposition from './pages/Ramda/RamdaComposition';
+import RamdaCurrying from './pages/Ramda/RamdaCurrying'
 
 const App = () =>
   <HashRouter>
@@ -25,6 +26,7 @@ const App = () =>
           </NavDropdown>
           <NavDropdown title="Ramda" id="basic-nav-dropdown">
             <NavDropdown.Item href="#ramda/composition">Ramda function composition</NavDropdown.Item>
+            <NavDropdown.Item href="#ramda/currying">Ramda function currying</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
@@ -36,6 +38,7 @@ const App = () =>
       <Route path="/rxjs/creation-operators" component={RxJsCreationOperators}/>
       <Route path="/rxjs/transformation-operators" component={RxJsTransformationOperators}/>
       <Route path="/ramda/composition" component={RamdaComposition}/>
+      <Route path="/ramda/currying" component={RamdaCurrying}/>
     </div>
   </HashRouter>
 
