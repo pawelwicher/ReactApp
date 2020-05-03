@@ -3,30 +3,22 @@ import * as R from 'ramda';
 
 export default function RamdaPascalTriangle() {
 
-  function triangle(n, row, acc) {
-    if (n === 0) {
-      return acc;
-    } else {
-      acc = [...acc, row];
-      row = [0, ...R.zipWith(R.add, R.init(row), R.tail(row)), 0];
-      return triangle(n - 1, row, acc);
-    }
-  }
+  const triangle = (n, row, acc) => n === 0 ? acc : triangle(n - 1, [0, ...R.zipWith(R.add, R.init(row), R.tail(row)), 0], [...acc, row]);
   
-  R.forEach(console.log, triangle(7, [0, 1, 0], []));
+  R.forEach(R.pipe(R.filter(x => x > 0), R.join(' '), console.log), triangle(7, [0, 1, 0], []));
 
   const code = `
-function triangle(n, row, acc) {
-  if (n === 0) {
-    return acc;
-  } else {
-    acc = [...acc, row];
-    row = [0, ...R.zipWith(R.add, R.init(row), R.tail(row)), 0];
-    return triangle(n - 1, row, acc)
-  }
-}
+const triangle = (n, row, acc) => n === 0 ? acc : triangle(n - 1, [0, ...R.zipWith(R.add, R.init(row), R.tail(row)), 0], [...acc, row]);
+  
+R.forEach(R.pipe(R.filter(x => x > 0), R.join(' '), console.log), triangle(7, [0, 1, 0], []));
 
-R.forEach(console.log, triangle(7, [0, 1, 0], []));
+// 1
+// 1 1
+// 1 2 1
+// 1 3 3 1
+// 1 4 6 4 1
+// 1 5 10 10 5 1
+// 1 6 15 20 15 6 1
 `;
 
   return (
