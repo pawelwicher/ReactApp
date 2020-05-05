@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { of, range } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { concatMap, map, mergeMap, pluck, switchMap, tap } from 'rxjs/operators';
+import { concatMap, map, mergeMap, pluck, switchMap, tap, delay } from 'rxjs/operators';
 
 export default function RxJsTransformationOperators() {
 
@@ -15,7 +15,7 @@ export default function RxJsTransformationOperators() {
     const subscription2 = values.subscribe(console.log);
 
     const getById = (id) => ajax.getJSON('https://pawelwicher.github.io/static-json-api/test.json').pipe(
-      map(response => response.find(x => x.id === id)),
+      map(response => response.find(x => x.id === id)), delay(1000)
     );
 
     const subscription3 = of(1, 2, 3).pipe(
@@ -52,7 +52,7 @@ const values = range(1, 5).pipe(map(x => ({ x })), pluck('x'));
 const subscription2 = values.subscribe(console.log);
 
 const getById = (id) => ajax.getJSON('https://pawelwicher.github.io/static-json-api/test.json').pipe(
-  map(response => response.find(x => x.id === id)),
+  map(response => response.find(x => x.id === id)), delay(1000)
 );
 
 const subscription3 = of(1, 2, 3).pipe(
