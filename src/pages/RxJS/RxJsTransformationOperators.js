@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { of, range } from 'rxjs';
+import { interval, of, range } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { concatMap, delay, map, mergeMap, pluck, switchMap, tap, pairwise } from 'rxjs/operators';
+import { bufferTime, concatMap, delay, map, mergeMap, pairwise, pluck, switchMap, tap } from 'rxjs/operators';
 
 export default function RxJsTransformationOperators() {
 
@@ -11,34 +11,39 @@ export default function RxJsTransformationOperators() {
     .pipe(map(response => response.find(x => x.id === id)), delay(1000));
 
   const demos = {
-    map: () => {
+    map() {
       of(2, 3, 5)
         .pipe(map(x => x * 2))
         .subscribe(console.log);
     },
-    pluck: () => {
+    pluck() {
       range(1, 5)
         .pipe(map(x => ({ x })), pluck('x'))
         .subscribe(console.log);
     },
-    pairwise: () => {
+    bufferTime() {
+      interval(1000)
+        .pipe(bufferTime(5000))
+        .subscribe(console.log);
+    },
+    pairwise() {
       range(1, 10)
         .pipe(pairwise())
         .subscribe(console.log);
     },
-    concatMap: () => {
+    concatMap() {
       of(1, 2, 3).pipe(
         concatMap(getById),
         tap(x => console.log('concatMap: ' + JSON.stringify(x))),
       ).subscribe();
     },
-    mergeMap: () => {
+    mergeMap() {
       of(5, 6, 7).pipe(
         mergeMap(getById),
         tap(x => console.log('mergeMap: ' + JSON.stringify(x))),
       ).subscribe();
     },
-    switchMap: () => {
+    switchMap() {
       of(12, 13, 14).pipe(
         switchMap(getById),
         tap(x => console.log('switchMap: ' + JSON.stringify(x))),
@@ -55,6 +60,10 @@ of(2, 3, 5)
 
 range(1, 5)
   .pipe(map(x => ({ x })), pluck('x'))
+  .subscribe(console.log);
+
+interval(1000)
+  .pipe(bufferTime(5000))
   .subscribe(console.log);
 
 range(1, 10)
