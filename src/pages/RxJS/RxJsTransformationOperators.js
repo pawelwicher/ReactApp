@@ -1,80 +1,96 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { of, range } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { concatMap, map, mergeMap, pluck, switchMap, tap, delay } from 'rxjs/operators';
+import { concatMap, delay, map, mergeMap, pluck, switchMap, tap, pairwise } from 'rxjs/operators';
 
 export default function RxJsTransformationOperators() {
 
-  useEffect(() => {
-    const source = of(2, 3, 5);
-    const subscription1 = source
-      .pipe(map(x => x * 2))
-      .subscribe(console.log);
+  const buttonStyle = { width: '100px', marginRight: '20px' };
 
-    const values = range(1, 5).pipe(map(x => ({ x })), pluck('x'));
-    const subscription2 = values.subscribe(console.log);
+  const getById = (id) => ajax.getJSON('https://pawelwicher.github.io/static-json-api/test.json')
+    .pipe(map(response => response.find(x => x.id === id)), delay(1000));
 
-    const getById = (id) => ajax.getJSON('https://pawelwicher.github.io/static-json-api/test.json').pipe(
-      map(response => response.find(x => x.id === id)), delay(1000)
-    );
-
-    const subscription3 = of(1, 2, 3).pipe(
-      concatMap(getById),
-      tap(x => console.log('concatMap: ' + JSON.stringify(x))),
-    ).subscribe();
-
-    const subscription4 = of(5, 6, 7).pipe(
-      mergeMap(getById),
-      tap(x => console.log('mergeMap: ' + JSON.stringify(x))),
-    ).subscribe();
-
-    const subscription5 = of(12, 13, 14).pipe(
-      switchMap(getById),
-      tap(x => console.log('switchMap: ' + JSON.stringify(x))),
-    ).subscribe();   
-
-    return () => {
-      subscription1.unsubscribe();
-      subscription2.unsubscribe();
-      subscription3.unsubscribe();
-      subscription4.unsubscribe();
-      subscription5.unsubscribe();
+  const demos = {
+    map: () => {
+      of(2, 3, 5)
+        .pipe(map(x => x * 2))
+        .subscribe(console.log);
+    },
+    pluck: () => {
+      range(1, 5)
+        .pipe(map(x => ({ x })), pluck('x'))
+        .subscribe(console.log);
+    },
+    pairwise: () => {
+      range(1, 10)
+        .pipe(pairwise())
+        .subscribe(console.log);
+    },
+    concatMap: () => {
+      of(1, 2, 3).pipe(
+        concatMap(getById),
+        tap(x => console.log('concatMap: ' + JSON.stringify(x))),
+      ).subscribe();
+    },
+    mergeMap: () => {
+      of(5, 6, 7).pipe(
+        mergeMap(getById),
+        tap(x => console.log('mergeMap: ' + JSON.stringify(x))),
+      ).subscribe();
+    },
+    switchMap: () => {
+      of(12, 13, 14).pipe(
+        switchMap(getById),
+        tap(x => console.log('switchMap: ' + JSON.stringify(x))),
+      ).subscribe();
     }
-  }, []);
+  };
+
+  const [demo, setDemo] = useState('map');
 
   const code = `
-const source = of(2, 3, 5);
-const subscription1 = source
+of(2, 3, 5)
   .pipe(map(x => x * 2))
   .subscribe(console.log);
 
-const values = range(1, 5).pipe(map(x => ({ x })), pluck('x'));
-const subscription2 = values.subscribe(console.log);
+range(1, 5)
+  .pipe(map(x => ({ x })), pluck('x'))
+  .subscribe(console.log);
 
-const getById = (id) => ajax.getJSON('https://pawelwicher.github.io/static-json-api/test.json').pipe(
-  map(response => response.find(x => x.id === id)), delay(1000)
-);
+range(1, 10)
+  .pipe(pairwise())
+  .subscribe(console.log);
 
-const subscription3 = of(1, 2, 3).pipe(
+
+const getById = (id) => ajax.getJSON('https://pawelwicher.github.io/static-json-api/test.json')
+  .pipe(map(response => response.find(x => x.id === id)), delay(1000));
+
+of(1, 2, 3).pipe(
   concatMap(getById),
   tap(x => console.log('concatMap: ' + JSON.stringify(x))),
 ).subscribe();
 
-const subscription4 = of(5, 6, 7).pipe(
+of(5, 6, 7).pipe(
   mergeMap(getById),
   tap(x => console.log('mergeMap: ' + JSON.stringify(x))),
 ).subscribe();
 
-const subscription5 = of(12, 13, 14).pipe(
+of(12, 13, 14).pipe(
   switchMap(getById),
   tap(x => console.log('switchMap: ' + JSON.stringify(x))),
 ).subscribe();
 `;
 
+  useEffect(() => {
+    console.clear();
+    demos[demo]();
+  });
+
   return (
     <>
       <h1 className="display-4">RxJS transformation operators</h1>
       <br/>
+      {Object.keys(demos).map(x => <button onClick={() => setDemo(x)} style={buttonStyle}>{x}</button>)}
       <pre className="text-monospace">
         <code>{code}</code>
       </pre>
