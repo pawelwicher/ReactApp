@@ -7,8 +7,7 @@ import RamdaCurrying from './pages/Ramda/RamdaCurrying';
 import RamdaPascalTriangle from './pages/Ramda/RamdaPascalTriangle';
 import FunctionComponent from './pages/React/FunctionComponent/FunctionComponent';
 import JestExamples from './pages/React/Jest/JestExamples';
-import RxJsCreationOperators from './pages/RxJS/RxJsCreationOperators';
-import RxJsTransformationOperators from './pages/RxJS/RxJsTransformationOperators';
+import RxJsOperators from './pages/RxJS/RxJsOperators';
 
 export default function App() {
   return (
@@ -23,8 +22,7 @@ export default function App() {
               <NavDropdown.Item href="#react/jest-examples">Jest testing</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="RxJS" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#rxjs/creation-operators">RxJS creation operators</NavDropdown.Item>
-              <NavDropdown.Item href="#rxjs/transformation-operators">RxJS transformation operators</NavDropdown.Item>         
+              <NavDropdown.Item href="#rxjs/operators">RxJS operators</NavDropdown.Item>   
             </NavDropdown>
             <NavDropdown title="Ramda" id="basic-nav-dropdown">
               <NavDropdown.Item href="#ramda/composition">Ramda function composition</NavDropdown.Item>
@@ -38,8 +36,7 @@ export default function App() {
         <Route exact path="/" component={Home}/>
         <Route path="/react/function-component" component={FunctionComponent}/>
         <Route path="/react/jest-examples" component={JestExamples}/>
-        <Route path="/rxjs/creation-operators" component={RxJsCreationOperators}/>
-        <Route path="/rxjs/transformation-operators" component={RxJsTransformationOperators}/>
+        <Route path="/rxjs/operators" component={RxJsOperators}/>
         <Route path="/ramda/composition" component={RamdaComposition}/>
         <Route path="/ramda/currying" component={RamdaCurrying}/>
         <Route path="/ramda/pascal-triangle" component={RamdaPascalTriangle}/>
