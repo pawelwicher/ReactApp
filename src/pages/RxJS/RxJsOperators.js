@@ -51,7 +51,7 @@ export default function RxJsOperators() {
     },
     combineLatest() {
       return combineLatest(timer, sequence).pipe(
-        tap(x => console.log('forkJoin: ' + x))
+        tap(x => console.log('combineLatest: ' + x))
       ).subscribe();
     },
     forkJoin() {
@@ -120,7 +120,7 @@ export default function RxJsOperators() {
     },
     combineLatest() {
       return combineLatest(timer, sequence).pipe(
-        tap(x => console.log('forkJoin: ' + x))
+        tap(x => console.log('combineLatest: ' + x))
       ).subscribe();
     },
     forkJoin() {
