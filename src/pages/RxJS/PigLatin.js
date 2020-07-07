@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { from, fromEvent } from 'rxjs';
-import { map, mergeMap, reduce } from 'rxjs/operators';
+import { map, mergeMap, reduce, tap } from 'rxjs/operators';
 
 function toPigLatin(word) {
   if (word.length < 2) {
@@ -21,6 +21,7 @@ export default function PigLatin() {
         from(s.split(/\s+/))
         .pipe(
           map(toPigLatin),
+          tap(console.log),
           reduce((acc, word) => acc + ' ' + word, '')
         )
       )
