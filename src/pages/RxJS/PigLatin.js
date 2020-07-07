@@ -2,19 +2,18 @@ import React, { useEffect } from 'react';
 import { from, fromEvent } from 'rxjs';
 import { map, mergeMap, reduce, tap } from 'rxjs/operators';
 
-function toPigLatin(word) {
-  if (word.length < 2) {
-    return word;
-  }
-  return word.slice(1) + '-' + word[0] + 'ay';
-}
-
 export default function PigLatin() {
+  const toPigLatin = (word) => {
+    if (word.length < 2) {
+      return word;
+    }
+    return word.slice(1) + '-' + word[0] + 'ay';
+  };
+  const textbox = React.createRef();
+  const out = React.createRef();
 
   useEffect(() => {
-    const textbox = document.querySelector('input');
-    const out = document.querySelector('#out');
-    fromEvent(textbox, 'keyup')
+    fromEvent(textbox.current, 'keyup')
     .pipe(
       map(event => event.target.value),
       mergeMap(s =>
@@ -26,16 +25,16 @@ export default function PigLatin() {
         )
       )
     )
-    .subscribe(words => out.innerText = words);
+    .subscribe(words => out.current.innerText = words);
   });
 
   return (
     <div style={{marginTop: '50px'}}>
       <span>Pig Latin</span>
       <br/>
-      <input type="text"/>
+      <input type="text" ref={textbox} />
       <br/>
-      <span id="out"></span>
+      <span ref={out}></span>
     </div>
   )
 }
